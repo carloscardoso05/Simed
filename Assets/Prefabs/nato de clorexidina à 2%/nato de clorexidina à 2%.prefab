@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1455174774284226557}
   - component: {fileID: 8494780305555584445}
   - component: {fileID: 2022428587082416270}
+  - component: {fileID: 8284452359669654126}
   m_Layer: 0
   m_Name: "nato de clorexidina \xE0 2%"
   m_TagString: Untagged
@@ -249,3 +250,17 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!64 &8284452359669654126
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094706553220345384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2426508734089713321, guid: 494c3f992d6dd9446bfaf22b6698765b, type: 3}
