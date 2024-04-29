@@ -9,9 +9,18 @@ public class Ferida : MonoBehaviour
     [SerializeField] private GameObject parteAmarela;
     [SerializeField] private AoRedor aoRedor;
     [SerializeField] private int limiteLimpezaPorFora = 4;
+    [SerializeField] private ProgressBar progressBar;
     private float limiteLavagemDaFerida = 2f;
     private float limiteAplicacaoDeHidrogel = 2f;
     private float limiteSecagemPorFora = 2f;
+    private string[] instructions = new string[] { "Limpar a parte de fora da ferida com gaze",
+    "Remover o tecido amarelo do local com tesoura ou bisturi",
+    "Lavar a ferida com jatos de soro usando a seringa",
+    "Colocar hidrogel",
+    "Secar com gaze por fora de ferida",
+    "Umidecer gaze e colocar por cima da lesão",
+    "Fechar com esparadrapo",
+    };
 
     private Material vermelho
     {
@@ -29,6 +38,7 @@ public class Ferida : MonoBehaviour
         amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, 1);
         vermelho.color = new Color(vermelho.color.r, vermelho.color.g, vermelho.color.b, 1);
         aoRedor.OnCollision += HandleInteraction;
+        progressBar.UpdateProgressBar(instructions[(int)tratamento]);
     }
 
     private void HandleInteraction(Collision other, Interacao interacao, bool aoRedor)
@@ -122,8 +132,11 @@ public class Ferida : MonoBehaviour
                 Destroy(parteAmarela);
                 break;
         }
+
+
         Debug.Log($"Indo de {tratamento} para {tratamento.Next()}");
         tratamento = tratamento.Next();
+        progressBar.UpdateProgressBar(instructions[(int)tratamento]);
     }
 
     private bool CollisionHasAnyComponents(Collision collision, params Type[] components)

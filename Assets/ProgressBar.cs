@@ -1,11 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 [ExecuteInEditMode()]
 public class ProgressBar : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI instruction;
     public int totalDeTarefas;
     public int tarefasFeitas;
     public Image mask;
@@ -14,28 +15,29 @@ public class ProgressBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Assert.IsNotNull(instruction);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        GetCurrentFill();
-    }
+    // void Update()
+    // {
+    //     GetCurrentFill();
+    // }
 
-    void GetCurrentFill()
-    {
-        float fillAmount = (float)tarefasFeitas / (float)totalDeTarefas;
-        mask.fillAmount = fillAmount;
+    // void GetCurrentFill()
+    // {
+    //     float fillAmount = tarefasFeitas / (float)totalDeTarefas;
+    //     mask.fillAmount = fillAmount;
 
-        fill.color = color;
-    }
+    //     fill.color = color;
+    // }
 
-     public void FixedUpdate()
+    public void UpdateProgressBar(string instructionText)
     {
         tarefasFeitas++;
-        float fillAmount = (float)tarefasFeitas / (float)totalDeTarefas;
+        float fillAmount = tarefasFeitas / (float)totalDeTarefas;
         mask.fillAmount = fillAmount;
+        instruction.text = instructionText;
 
         fill.color = color;
     }
