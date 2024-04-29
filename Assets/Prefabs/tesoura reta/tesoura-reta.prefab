@@ -68471,7 +68471,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7
+  m_VersionIndex: 10
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []
@@ -68488,6 +68488,7 @@ GameObject:
   - component: {fileID: 2777437271523980922}
   - component: {fileID: 1374103764092165573}
   - component: {fileID: 620873773593577635}
+  - component: {fileID: 861673205177800535}
   m_Layer: 0
   m_Name: tesoura-reta
   m_TagString: Untagged
@@ -68689,6 +68690,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.014058268, y: 0.006236212, z: 0.07025491}
   m_Center: {x: 0.00046066262, y: -0.0003021009, z: -0.045278847}
+--- !u!114 &861673205177800535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2205086066145534797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65ef43ffc88ac3d42bcaf5abef7f0fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6530088111415905914
 GameObject:
   m_ObjectHideFlags: 0
@@ -137160,7 +137173,7 @@ MonoBehaviour:
   m_PreserveMeshAssetOnDestroy: 0
   assetGuid: 
   m_Mesh: {fileID: 0}
-  m_VersionIndex: 7
+  m_VersionIndex: 10
   m_IsSelectable: 1
   m_SelectedFaces: 
   m_SelectedEdges: []

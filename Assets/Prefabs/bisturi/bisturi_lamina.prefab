@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1524632353040603313}
   - component: {fileID: 1524632353040603318}
   - component: {fileID: 1524632353040603315}
+  - component: {fileID: 4524044378327095823}
   m_Layer: 0
   m_Name: bisturi_lamina
   m_TagString: Untagged
@@ -213,6 +214,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.06905853, y: 0.2616389, z: 1.13677}
   m_Center: {x: 0.0009917488, y: 0.017306365, z: 1.0600328}
+--- !u!114 &4524044378327095823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867301550867654117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 823ea04997a8d554db7c3f3345aa814b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2208160747430587088
 GameObject:
   m_ObjectHideFlags: 0

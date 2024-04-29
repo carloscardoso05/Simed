@@ -1,68 +1,140 @@
+using System;
+using Unity.Mathematics;
 using UnityEngine;
 
-public enum EstadoFerida { Ruim, Medio, Bom }
 [RequireComponent(typeof(Collider))]
 public class Ferida : MonoBehaviour
 {
     [SerializeField] private GameObject parteVermelha;
     [SerializeField] private GameObject parteAmarela;
-    [SerializeField] private Material vermelho;
-    [SerializeField] private Material amarelo;
-    [SerializeField] private EstadoFerida estadoFerida;
+    [SerializeField] private AoRedor aoRedor;
+    [SerializeField] private int limiteLimpezaPorFora = 4;
+    private float limiteLavagemDaFerida = 2f;
+    private float limiteAplicacaoDeHidrogel = 2f;
+    private float limiteSecagemPorFora = 2f;
+
+    private Material vermelho
+    {
+        get => parteVermelha.GetComponent<MeshRenderer>().material;
+    }
+    private Material amarelo
+    {
+        get => parteAmarela.GetComponent<MeshRenderer>().material;
+    }
+    [SerializeField] private Tratamento tratamento = Tratamento.LimpezaPorFora;
     [SerializeField] private float velocity = 0.2f;
 
     private void Start()
     {
         amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, 1);
         vermelho.color = new Color(vermelho.color.r, vermelho.color.g, vermelho.color.b, 1);
-        AtualizarEstadoFerida(EstadoFerida.Ruim);
+        aoRedor.OnCollision += HandleInteraction;
     }
 
-    private void HandleInteraction()
+    private void HandleInteraction(Collision other, Interacao interacao, bool aoRedor)
     {
-        switch (estadoFerida)
+        Debug.Log($"Velocidade relativa: {other.relativeVelocity}");
+        switch (tratamento)
         {
-            case EstadoFerida.Ruim:
-                amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, amarelo.color.a - velocity * Time.deltaTime);
-                if (amarelo.color.a <= 0) AtualizarEstadoFerida(EstadoFerida.Medio);
+            case Tratamento.LimpezaPorFora:
+                if (interacao != Interacao.Discreta || !aoRedor) break;
+                if (CollisionHasAnyComponents(other, typeof(Gaze)))
+                {
+                    limiteLimpezaPorFora -= 1;
+                    if (limiteLimpezaPorFora == 0)
+                    {
+                        AtualizarTratamento();
+                    }
+                }
                 break;
-            case EstadoFerida.Medio:
-                vermelho.color = new Color(vermelho.color.r, vermelho.color.g, vermelho.color.b, vermelho.color.a - velocity * Time.deltaTime);
-                if (vermelho.color.a <= 0) AtualizarEstadoFerida(EstadoFerida.Bom);
+            case Tratamento.RemocaoDoTecidoAmarelo:
+                if (interacao != Interacao.Discreta) break;
+                if (CollisionHasAnyComponents(other, typeof(Tesoura), typeof(Bisturi)))
+                {
+                    amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, math.max(amarelo.color.a - velocity, 0));
+                    if (amarelo.color.a <= 0)
+                    {
+                        AtualizarTratamento();
+                    }
+                }
                 break;
-            case EstadoFerida.Bom:
-                Debug.Log("Bom");
+            case Tratamento.LavagemDaFerida:
+                if (interacao != Interacao.Continua) break;
+                if (CollisionHasAnyComponents(other, typeof(Seringa)))
+                {
+                    limiteLavagemDaFerida -= Time.deltaTime;
+                    if (limiteLavagemDaFerida <= 0) AtualizarTratamento();
+                }
+                break;
+            case Tratamento.AplicacaoDeHidrogel:
+                if (interacao != Interacao.Continua) break;
+                if (CollisionHasAnyComponents(other, typeof(Hidrogel)))
+                {
+                    limiteAplicacaoDeHidrogel -= Time.deltaTime;
+                    if (limiteAplicacaoDeHidrogel <= 0) AtualizarTratamento();
+                }
+                break;
+            case Tratamento.SecagemPorFora:
+                if (interacao != Interacao.Continua || !aoRedor) break;
+                if (CollisionHasAnyComponents(other, typeof(Gaze)))
+                {
+                    limiteSecagemPorFora -= Time.deltaTime;
+                    if (limiteSecagemPorFora <= 0) AtualizarTratamento();
+                }
+                break;
+            case Tratamento.AplicarGazeHumidecida:
+                if (interacao != Interacao.Discreta) break;
+                if (CollisionHasAnyComponents(other, typeof(Gaze)))
+                {
+                    AtualizarTratamento();
+                }
+                break;
+            case Tratamento.FecharComEsparadrapo:
+                if (interacao != Interacao.Discreta) break;
+                if (CollisionHasAnyComponents(other, typeof(Esparadrapo)))
+                {
+                    AtualizarTratamento();
+                }
+                break;
+            default:
+                Debug.Log($"{tratamento} não tratado.");
                 break;
         }
-    }
-
-    private void OnDestroy()
-    {
-        amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, 1);
-        vermelho.color = new Color(vermelho.color.r, vermelho.color.g, vermelho.color.b, 1);
     }
 
     private void OnCollisionExit(Collision other)
     {
-        Debug.Log("Colision detected");
-        other.gameObject.TryGetComponent<Pinca>(out var pinca);
-        other.gameObject.TryGetComponent<Pomada>(out var pomada);
-        if (pinca == null && pomada == null) return;
-        Debug.Log("Colision Pinça");
-        HandleInteraction();
+        if (other.gameObject.TryGetComponent<AoRedor>(out _)) return;
+        HandleInteraction(other, Interacao.Discreta, false);
     }
-    
-    public void AtualizarEstadoFerida(EstadoFerida novoEstado)
+
+    private void OnCollisionStay(Collision other)
     {
-        estadoFerida = novoEstado;
-        switch (novoEstado)
+        if (other.gameObject.TryGetComponent<AoRedor>(out _)) return;
+        HandleInteraction(other, Interacao.Continua, false);
+    }
+
+    public void AtualizarTratamento()
+    {
+        switch (tratamento)
         {
-            case EstadoFerida.Medio:
+            case Tratamento.RemocaoDoTecidoAmarelo:
                 Destroy(parteAmarela);
                 break;
-            case EstadoFerida.Bom:
-                Destroy(parteVermelha);
-                break;
         }
+        Debug.Log($"Indo de {tratamento} para {tratamento.Next()}");
+        tratamento = tratamento.Next();
+    }
+
+    private bool CollisionHasAnyComponents(Collision collision, params Type[] components)
+    {
+        foreach (var component in components)
+        {
+            if (collision.gameObject.TryGetComponent(component, out _))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

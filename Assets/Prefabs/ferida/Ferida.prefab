@@ -110,15 +110,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7572158973759252490}
-  m_LocalRotation: {x: -0.0028296849, y: -0.035432026, z: 0.07955858, w: 0.99619627}
+  m_LocalRotation: {x: -0.0028296318, y: -0.03543203, z: 0.07955709, w: 0.99619645}
   m_LocalPosition: {x: -2.3754, y: 0.7674, z: -0.1912}
-  m_LocalScale: {x: 0.012608069, y: 0.04323784, z: 0.043362748}
+  m_LocalScale: {x: 0.0143908495, y: 0.04935167, z: 0.04949424}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3380072474080528897}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3.568}
+  m_LocalEulerAnglesHint: {x: 0, y: -4.074, z: 9.132}
 --- !u!33 &7790232917933438625
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -183,10 +183,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parteVermelha: {fileID: 7572158973759252490}
   parteAmarela: {fileID: 4599626966960753488}
-  vermelho: {fileID: 2100000, guid: dbe1de3e02dfa9f4ca9ff9c24398cda1, type: 2}
-  amarelo: {fileID: 2100000, guid: 07df25de4fe57044fb7bd8577a17aa3d, type: 2}
-  estadoFerida: 0
-  velocity: 0.2
+  aoRedor: {fileID: 0}
+  limiteLimpezaPorFora: 4
+  tratamento: 0
+  velocity: 4
 --- !u!64 &5338370101943920163
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -195,7 +195,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7572158973759252490}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
