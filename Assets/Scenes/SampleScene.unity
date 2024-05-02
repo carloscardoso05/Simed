@@ -3904,6 +3904,11 @@ PrefabInstance:
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 1880457588}
+    - target: {fileID: 5338370101943920163, guid: 0ad19631d3dec7845a0470fb4d4a1474,
+        type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6618955292891601654, guid: 0ad19631d3dec7845a0470fb4d4a1474,
         type: 3}
       propertyPath: m_RootOrder
@@ -3991,12 +3996,12 @@ PrefabInstance:
     - target: {fileID: 4715857318435484104, guid: 45b989ad42315fc43a2bf78712851409,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.5449
+      value: -1.5428
       objectReference: {fileID: 0}
     - target: {fileID: 4715857318435484104, guid: 45b989ad42315fc43a2bf78712851409,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8477
+      value: 0.858
       objectReference: {fileID: 0}
     - target: {fileID: 4715857318435484104, guid: 45b989ad42315fc43a2bf78712851409,
         type: 3}
