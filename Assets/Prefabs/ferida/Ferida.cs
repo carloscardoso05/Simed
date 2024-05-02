@@ -50,6 +50,7 @@ public class Ferida : MonoBehaviour
                 if (interacao != Interacao.Discreta || !aoRedor) break;
                 if (CollisionHasAnyComponents(other, typeof(Gaze)))
                 {
+                    Debug.Log(limiteLimpezaPorFora);
                     limiteLimpezaPorFora -= 1;
                     if (limiteLimpezaPorFora == 0)
                     {
