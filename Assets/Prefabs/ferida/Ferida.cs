@@ -62,6 +62,7 @@ public class Ferida : MonoBehaviour
                 if (interacao != Interacao.Discreta) break;
                 if (CollisionHasAnyComponents(other, typeof(Tesoura), typeof(Bisturi)))
                 {
+                    Debug.Log(amarelo.color.a);
                     amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, math.max(amarelo.color.a - velocity, 0));
                     if (amarelo.color.a <= 0)
                     {
@@ -73,6 +74,7 @@ public class Ferida : MonoBehaviour
                 if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Seringa)))
                 {
+                    Debug.Log(limiteLavagemDaFerida);
                     limiteLavagemDaFerida -= Time.deltaTime;
                     if (limiteLavagemDaFerida <= 0) AtualizarTratamento();
                 }
@@ -81,6 +83,7 @@ public class Ferida : MonoBehaviour
                 if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Hidrogel)))
                 {
+                    Debug.Log(limiteAplicacaoDeHidrogel);
                     limiteAplicacaoDeHidrogel -= Time.deltaTime;
                     if (limiteAplicacaoDeHidrogel <= 0) AtualizarTratamento();
                 }
@@ -89,6 +92,7 @@ public class Ferida : MonoBehaviour
                 if (interacao != Interacao.Continua || !aoRedor) break;
                 if (CollisionHasAnyComponents(other, typeof(Gaze)))
                 {
+                    Debug.Log(limiteSecagemPorFora);
                     limiteSecagemPorFora -= Time.deltaTime;
                     if (limiteSecagemPorFora <= 0) AtualizarTratamento();
                 }
