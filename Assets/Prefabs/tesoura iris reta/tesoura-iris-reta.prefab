@@ -94,8 +94,9 @@ GameObject:
   - component: {fileID: 7494545590298111364}
   - component: {fileID: 915886666649965118}
   - component: {fileID: 466836934273736865}
-  - component: {fileID: 3788598346154550617}
   - component: {fileID: 8441680080566727115}
+  - component: {fileID: 8139505127487773849}
+  - component: {fileID: 2482812426410653978}
   m_Layer: 0
   m_Name: tesoura-iris-reta
   m_TagString: Untagged
@@ -284,19 +285,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!65 &3788598346154550617
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7154576232154150718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.6810102, y: 0.20575061, z: 2.0843744}
-  m_Center: {x: 0.022632482, y: -0.0014268701, z: -0.25731072}
 --- !u!114 &8441680080566727115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,6 +297,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ef43ffc88ac3d42bcaf5abef7f0fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8139505127487773849
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154576232154150718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.5877695, y: 0, z: 0.35340074}
+  m_Center: {x: -0.5203836, y: -0.047298685, z: -0.18382202}
+--- !u!65 &2482812426410653978
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154576232154150718}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0875572, y: 0.17880335, z: 1.8627225}
+  m_Center: {x: 1.863216, y: 0.014660581, z: -0.20364435}
 --- !u!1 &7194502875672056766
 GameObject:
   m_ObjectHideFlags: 0
