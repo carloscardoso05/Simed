@@ -591,6 +591,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1494897293622429451}
   - component: {fileID: 804096573321101529}
+  - component: {fileID: 5814128311875127698}
   m_Layer: 0
   m_Name: leito
   m_TagString: Untagged
@@ -662,6 +663,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.7354213, y: 0.9106178, z: 2.1441176}
   m_Center: {x: -0.10635024, y: 0.4504593, z: -0.0037885904}
+--- !u!65 &5814128311875127698
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2302783650468371889}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7493014, y: 0.2877879, z: 0.5099981}
+  m_Center: {x: -0.10825625, y: 0.6694795, z: -0.8147708}
 --- !u!1 &2319836364932722972
 GameObject:
   m_ObjectHideFlags: 0

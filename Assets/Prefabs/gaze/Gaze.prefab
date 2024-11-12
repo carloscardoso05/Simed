@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4269875197039669450}
   - component: {fileID: 1763753699213865592}
   - component: {fileID: 4484812202047618370}
-  - component: {fileID: 8340299835364067565}
+  - component: {fileID: 7776758394532008778}
   m_Layer: 0
   m_Name: Gaze
   m_TagString: Untagged
@@ -225,7 +225,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -263,8 +263,8 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!64 &8340299835364067565
-MeshCollider:
+--- !u!65 &7776758394532008778
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -273,7 +273,6 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -462981019419857548, guid: 068e5e53776c035479682aef51395895, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 0.020000007, y: 0.020000007, z: 0.000020586684}
+  m_Center: {x: -0.00000001487662, y: -2.4541053e-11, z: 0.000010293223}
