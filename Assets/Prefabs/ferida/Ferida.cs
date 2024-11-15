@@ -1,44 +1,40 @@
 using System;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider))]
 public class Ferida : MonoBehaviour
 {
-    [SerializeField] private GameObject parteVermelha;
-    [SerializeField] private GameObject parteAmarela;
-    [SerializeField] private AoRedor aoRedor;
     [SerializeField] private int limiteLimpezaPorFora = 4;
     [SerializeField] private ProgressBar progressBar;
-    private float limiteLavagemDaFerida = 2f;
-    private float limiteAplicacaoDeHidrogel = 2f;
-    private float limiteSecagemPorFora = 2f;
-    private string[] instructions = new string[] { "Limpar a parte de fora da ferida com gaze",
-    "Remover o tecido amarelo do local com tesoura ou bisturi",
-    "Lavar a ferida com jatos de soro usando a seringa",
-    "Colocar hidrogel",
-    "Secar com gaze por fora de ferida",
-    "Umidecer gaze e colocar por cima da lesão",
-    "Fechar com esparadrapo",
+    [SerializeField] private GameObject corpoFerida;
+    [SerializeField] private GameObject corpoFeridaComParteAmarela;
+    [SerializeField] private Collider areaFerida;
+    private float _limiteLavagemDaFerida = 2f;
+    private float _limiteAplicacaoDeHidrogel = 2f;
+    private float _limiteSecagemPorFora = 2f;
+
+
+    private readonly string[] _instructions =
+    {
+        "Limpar a parte de fora da ferida com gaze",
+        "Remover o tecido amarelo do local com tesoura ou bisturi",
+        "Lavar a ferida com jatos de soro usando a seringa",
+        "Colocar hidrogel",
+        "Secar com gaze por fora de ferida",
+        "Umidecer gaze e colocar por cima da lesão",
+        "Fechar com esparadrapo",
     };
 
-    private Material vermelho
-    {
-        get => parteVermelha.GetComponent<MeshRenderer>().material;
-    }
-    private Material amarelo
-    {
-        get => parteAmarela.GetComponent<MeshRenderer>().material;
-    }
     [SerializeField] private Tratamento tratamento = Tratamento.LimpezaPorFora;
     [SerializeField] private float velocity = 0.2f;
 
     private void Start()
     {
-        amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, 1);
-        vermelho.color = new Color(vermelho.color.r, vermelho.color.g, vermelho.color.b, 1);
-        aoRedor.OnCollision += HandleInteraction;
-        progressBar.UpdateProgressBar(instructions[(int)tratamento]);
+        corpoFerida.SetActive(false);
+        corpoFeridaComParteAmarela.SetActive(true);
+        progressBar.UpdateProgressBar(_instructions[(int)tratamento]);
     }
 
     private void HandleInteraction(Collision other, Interacao interacao, bool aoRedor)
@@ -58,44 +54,43 @@ public class Ferida : MonoBehaviour
                     }
                 }
                 break;
+            
             case Tratamento.RemocaoDoTecidoAmarelo:
                 if (interacao != Interacao.Discreta) break;
                 if (CollisionHasAnyComponents(other, typeof(Tesoura), typeof(Bisturi)))
                 {
-                    Debug.Log(amarelo.color.a);
-                    amarelo.color = new Color(amarelo.color.r, amarelo.color.g, amarelo.color.b, math.max(amarelo.color.a - velocity, 0));
-                    if (amarelo.color.a <= 0)
-                    {
-                        AtualizarTratamento();
-                    }
+                    AtualizarTratamento();
                 }
                 break;
+            
             case Tratamento.LavagemDaFerida:
                 if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Seringa)))
                 {
-                    Debug.Log(limiteLavagemDaFerida);
-                    limiteLavagemDaFerida -= Time.deltaTime;
-                    if (limiteLavagemDaFerida <= 0) AtualizarTratamento();
+                    _limiteLavagemDaFerida -= Time.deltaTime;
+                    if (_limiteLavagemDaFerida <= 0) AtualizarTratamento();
                 }
                 break;
+            
             case Tratamento.AplicacaoDeHidrogel:
                 if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Hidrogel)))
                 {
-                    Debug.Log(limiteAplicacaoDeHidrogel);
-                    limiteAplicacaoDeHidrogel -= Time.deltaTime;
-                    if (limiteAplicacaoDeHidrogel <= 0) AtualizarTratamento();
+                    Debug.Log(_limiteAplicacaoDeHidrogel);
+                    _limiteAplicacaoDeHidrogel -= Time.deltaTime;
+                    if (_limiteAplicacaoDeHidrogel <= 0) AtualizarTratamento();
                 }
+
                 break;
             case Tratamento.SecagemPorFora:
                 if (interacao != Interacao.Continua || !aoRedor) break;
                 if (CollisionHasAnyComponents(other, typeof(Gaze)))
                 {
-                    Debug.Log(limiteSecagemPorFora);
-                    limiteSecagemPorFora -= Time.deltaTime;
-                    if (limiteSecagemPorFora <= 0) AtualizarTratamento();
+                    Debug.Log(_limiteSecagemPorFora);
+                    _limiteSecagemPorFora -= Time.deltaTime;
+                    if (_limiteSecagemPorFora <= 0) AtualizarTratamento();
                 }
+
                 break;
             case Tratamento.AplicarGazeHumidecida:
                 if (interacao != Interacao.Discreta) break;
@@ -103,6 +98,7 @@ public class Ferida : MonoBehaviour
                 {
                     AtualizarTratamento();
                 }
+
                 break;
             case Tratamento.FecharComEsparadrapo:
                 if (interacao != Interacao.Discreta) break;
@@ -110,6 +106,7 @@ public class Ferida : MonoBehaviour
                 {
                     AtualizarTratamento();
                 }
+
                 break;
             default:
                 Debug.Log($"{tratamento} não tratado.");
@@ -131,17 +128,16 @@ public class Ferida : MonoBehaviour
 
     public void AtualizarTratamento()
     {
-        switch (tratamento)
+        if (tratamento == Tratamento.RemocaoDoTecidoAmarelo)
         {
-            case Tratamento.RemocaoDoTecidoAmarelo:
-                Destroy(parteAmarela);
-                break;
+            corpoFerida.SetActive(true);
+            corpoFeridaComParteAmarela.SetActive(false);
         }
 
 
         Debug.Log($"Indo de {tratamento} para {tratamento.Next()}");
         tratamento = tratamento.Next();
-        progressBar.UpdateProgressBar(instructions[(int)tratamento]);
+        progressBar.UpdateProgressBar(_instructions[(int)tratamento]);
     }
 
     private bool CollisionHasAnyComponents(Collision collision, params Type[] components)
@@ -153,6 +149,7 @@ public class Ferida : MonoBehaviour
                 return true;
             }
         }
+
         return false;
     }
 }
