@@ -1,7 +1,5 @@
 using System;
-using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Collider))]
 public class Ferida : MonoBehaviour
@@ -37,13 +35,13 @@ public class Ferida : MonoBehaviour
         progressBar.UpdateProgressBar(_instructions[(int)tratamento]);
     }
 
-    private void HandleInteraction(Collision other, Interacao interacao, bool aoRedor)
+    private void HandleInteraction(Collision other, Interacao interacao)
     {
         Debug.Log($"Velocidade relativa: {other.relativeVelocity}");
         switch (tratamento)
         {
             case Tratamento.LimpezaPorFora:
-                if (interacao != Interacao.Discreta || !aoRedor) break;
+                if (interacao != Interacao.Discreta) break;
                 if (CollisionHasAnyComponents(other, typeof(Gaze)))
                 {
                     Debug.Log(limiteLimpezaPorFora);
@@ -53,16 +51,18 @@ public class Ferida : MonoBehaviour
                         AtualizarTratamento();
                     }
                 }
+
                 break;
-            
+
             case Tratamento.RemocaoDoTecidoAmarelo:
                 if (interacao != Interacao.Discreta) break;
                 if (CollisionHasAnyComponents(other, typeof(Tesoura), typeof(Bisturi)))
                 {
                     AtualizarTratamento();
                 }
+
                 break;
-            
+
             case Tratamento.LavagemDaFerida:
                 if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Seringa)))
@@ -70,8 +70,9 @@ public class Ferida : MonoBehaviour
                     _limiteLavagemDaFerida -= Time.deltaTime;
                     if (_limiteLavagemDaFerida <= 0) AtualizarTratamento();
                 }
+
                 break;
-            
+
             case Tratamento.AplicacaoDeHidrogel:
                 if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Hidrogel)))
@@ -83,7 +84,7 @@ public class Ferida : MonoBehaviour
 
                 break;
             case Tratamento.SecagemPorFora:
-                if (interacao != Interacao.Continua || !aoRedor) break;
+                if (interacao != Interacao.Continua) break;
                 if (CollisionHasAnyComponents(other, typeof(Gaze)))
                 {
                     Debug.Log(_limiteSecagemPorFora);
@@ -116,14 +117,12 @@ public class Ferida : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
-        if (other.gameObject.TryGetComponent<AoRedor>(out _)) return;
-        HandleInteraction(other, Interacao.Discreta, false);
+        HandleInteraction(other, Interacao.Discreta);
     }
 
     private void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.TryGetComponent<AoRedor>(out _)) return;
-        HandleInteraction(other, Interacao.Continua, false);
+        HandleInteraction(other, Interacao.Continua);
     }
 
     public void AtualizarTratamento()
