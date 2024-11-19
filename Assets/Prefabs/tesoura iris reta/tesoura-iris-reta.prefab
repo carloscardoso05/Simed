@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5023185840623045374}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.015283033, y: -0.21966878, z: 0.27207708, w: -0.93674225}
-  m_LocalPosition: {x: 0.0000064, y: 0.0000054, z: 0.0000004}
+  m_LocalRotation: {x: -0.015282934, y: -0.21966884, z: 0.2720767, w: -0.93674237}
+  m_LocalPosition: {x: 0.0000153, y: 0.000009, z: -0.000003}
   m_LocalScale: {x: 0.00033333336, y: 0.0003333334, z: 0.00033333336}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -165,9 +165,9 @@ MonoBehaviour:
   m_StartingHoverFilters: []
   m_StartingSelectFilters: []
   m_StartingInteractionStrengthFilters: []
-  m_AttachTransform: {fileID: 6167049534184183661}
+  m_AttachTransform: {fileID: 0}
   m_SecondaryAttachTransform: {fileID: 0}
-  m_UseDynamicAttach: 0
+  m_UseDynamicAttach: 1
   m_MatchAttachPosition: 1
   m_MatchAttachRotation: 1
   m_SnapToColliderVolume: 1

@@ -117,11 +117,25 @@ public class Ferida : MonoBehaviour
 
     private void OnCollisionExit(Collision other)
     {
+        Debug.Log("Discreta");
         HandleInteraction(other, Interacao.Discreta);
     }
 
     private void OnCollisionStay(Collision other)
     {
+        Debug.Log("Continua");
+        HandleInteraction(other, Interacao.Continua);
+    }
+
+    private void OnTriggerExit(Collision other)
+    {
+        Debug.Log("Discreta");
+        HandleInteraction(other, Interacao.Discreta);
+    }
+
+    private void OnTriggerStay(Collision other)
+    {
+        Debug.Log("Continua");
         HandleInteraction(other, Interacao.Continua);
     }
 
