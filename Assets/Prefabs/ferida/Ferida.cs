@@ -23,6 +23,7 @@ public class Ferida : MonoBehaviour
         "Secar com gaze por fora de ferida",
         "Umidecer gaze e colocar por cima da lesão",
         "Fechar com esparadrapo",
+        "Tratamento finalizado"
     };
 
     [SerializeField] private Tratamento tratamento = Tratamento.LimpezaPorFora;
