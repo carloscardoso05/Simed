@@ -1136,7 +1136,7 @@ Transform:
   m_GameObject: {fileID: 441521002}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1176, z: 0}
+  m_LocalPosition: {x: 0, y: 0.959, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1250,7 +1250,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3459618715723871274, guid: 633760f085ae61c4b80393eeb38a3e35,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1565474331}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 633760f085ae61c4b80393eeb38a3e35, type: 3}
 --- !u!1 &479332682 stripped
@@ -3242,6 +3246,83 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 787370365}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1296510104
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1377499506}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071067
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_Name
+      value: CorpoGaze
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f7932539bbd86a14f9602470f9a86bdd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1565474332}
+  m_SourcePrefab: {fileID: 100100000, guid: f7932539bbd86a14f9602470f9a86bdd, type: 3}
 --- !u!1001 &1319507610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3315,6 +3396,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 624438fb9caa9304697d04d1c4176fa4, type: 3}
+--- !u!4 &1377499506 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3459618715723871274, guid: 633760f085ae61c4b80393eeb38a3e35,
+    type: 3}
+  m_PrefabInstance: {fileID: 479332681}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1399227437
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3466,6 +3553,40 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4f45d0c7f8cf37e46aa3b46bd43e9a90, type: 3}
+--- !u!1 &1565474330 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f7932539bbd86a14f9602470f9a86bdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1296510104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1565474331 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: f7932539bbd86a14f9602470f9a86bdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1296510104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1565474332
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565474330}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 2037754757683175763, guid: 9e1919da36981fe478a14a5b3efbdf4c, type: 3}
 --- !u!1 &1601127724
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,6 +5280,11 @@ PrefabInstance:
       propertyPath: progressBar
       value: 
       objectReference: {fileID: 1880457588}
+    - target: {fileID: 7055849568195003489, guid: 0ad19631d3dec7845a0470fb4d4a1474,
+        type: 3}
+      propertyPath: corpoComGaze
+      value: 
+      objectReference: {fileID: 1565474330}
     - target: {fileID: 7055849568195003489, guid: 0ad19631d3dec7845a0470fb4d4a1474,
         type: 3}
       propertyPath: corpoFeridaComParteAmarela

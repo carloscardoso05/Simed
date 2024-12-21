@@ -8,6 +8,7 @@ public class Ferida : MonoBehaviour
     [SerializeField] private ProgressBar progressBar;
     [SerializeField] private GameObject corpoFerida;
     [SerializeField] private GameObject corpoFeridaComParteAmarela;
+    [SerializeField] private GameObject corpoComGaze;
     [SerializeField] private Collider areaFerida;
     private float _limiteLavagemDaFerida = 2f;
     private float _limiteAplicacaoDeHidrogel = 2f;
@@ -33,6 +34,7 @@ public class Ferida : MonoBehaviour
     {
         corpoFerida.SetActive(false);
         corpoFeridaComParteAmarela.SetActive(true);
+        corpoComGaze.SetActive(false);
         progressBar.UpdateProgressBar(_instructions[(int)tratamento]);
     }
 
@@ -146,6 +148,12 @@ public class Ferida : MonoBehaviour
         {
             corpoFerida.SetActive(true);
             corpoFeridaComParteAmarela.SetActive(false);
+        }
+
+        if (tratamento == Tratamento.FecharComEsparadrapo)
+        {
+            corpoFerida.SetActive(false);
+            corpoComGaze.SetActive(true);
         }
 
 
